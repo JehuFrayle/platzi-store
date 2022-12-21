@@ -1,0 +1,26 @@
+img {
+  max-width: 100%;
+  border-radius: 10px;
+  filter: drop-shadow(0 0 2px #101020);
+}
+div {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: all 1s;
+  border-radius: 5px;
+}
+div:hover {
+  transform: scale(105%);
+  transition: all .5s;
+}
+button {
+  border: none;
+  border-radius: 5px;
+  text-transform: uppercase;
+  padding: 3px;
+  background-color: peachpuff;
+  box-shadow: 0 0 1px #101020;
+  cursor: pointer;
+}
