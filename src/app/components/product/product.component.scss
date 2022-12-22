@@ -24,3 +24,6 @@ button {
   box-shadow: 0 0 1px #101020;
   cursor: pointer;
 }
+button:disabled{
+  background-color: lightgray;
+}

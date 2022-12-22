@@ -1,12 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-
-export interface Product {
-  name: string,
-  alt: string,
-  price: number,
-  img: string,
-}
-
+import { Product } from 'src/app/models/product.model';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -14,10 +7,11 @@ export interface Product {
 })
 export class ProductComponent {
 @Input() product: Product = {
-  name: 'Coffee',
-  alt: 'A cup of coffee',
+  title: 'Coffee',
+  description: 'A cup of coffee',
   price: 356,
-  img: "../../../assets/images/default.png"
+  image: "../../../assets/images/default.png",
+  category: ''
 }
 @Output() addedProduct = new EventEmitter<Product>();
 addToCart(){

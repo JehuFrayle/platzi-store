@@ -1,6 +1,6 @@
 <div>
-  <h3>{{product.name}}</h3>
-  <img [src]="product.img" [alt]="product.alt"/>
+  <h3>{{product.title}}</h3>
+  <img [src]="product.image" [alt]="product.description"/>
   <p>${{product.price}}</p>
-  <button (click)="addToCart()" type="button">Add</button>
+  <button (click)="addToCart()" type="button" [disabled]="!(product.available ?? true)">Add</button>
 </div>
