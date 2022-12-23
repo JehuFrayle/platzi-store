@@ -1,8 +1,12 @@
+.products-list {
+  padding: 0 2rem;
+}
 .products-grid {
   display: flex;
   flex-direction: column;
   width: 100%;
   padding: 0 2rem;
+  gap: 10px;
 }
 h2{
   text-align: center;
@@ -11,26 +15,30 @@ h2{
 }
 .shoppingCart {
   position: sticky;
-  padding: .5rem 1rem;
-}
-@media screen and (min-width: 40em) and (max-width: 63.9em){
-  .products-grid{
-    display: grid;
-    grid-gap: 15px;
-    grid-template-columns: repeat(4, 1fr);
+  top: 5rem;
+  z-index: 5;
+  background-color: #ACD9B2;
+  border-radius: 10px;
+  display: inline-block;
+  margin: 1rem auto 1rem 0;
+  padding:1rem;
+  box-shadow: 0 0 2px #103010;
+
+  span {
+    font-weight: bold;
   }
 }
 @media screen and (min-width: 40em) and (max-width: 63.9em){
   .products-grid{
     display: grid;
-    grid-gap: 15px;
+    grid-gap: 20px;
     grid-template-columns: repeat(4, 1fr);
   }
 }
 @media screen and (min-width: 64em){
   .products-grid{
     display: grid;
-    grid-gap: 15px;
+    grid-gap: 20px;
     grid-template-columns: repeat(5, 1fr);
   }
 }

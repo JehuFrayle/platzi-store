@@ -1,6 +1,6 @@
 <div>
   <h3>{{product.title}}</h3>
   <img [src]="product.image" [alt]="product.description"/>
-  <p>${{product.price}}</p>
-  <button (click)="addToCart()" type="button" [disabled]="!(product.available ?? true)">Add</button>
+  <p>{{product.price | currency:'USD'}}</p>
+  <button (click)="addToCart()" type="button" [disabled]="!(product.available ?? true)">Add to cart</button>
 </div>

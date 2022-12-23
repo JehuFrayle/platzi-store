@@ -1,29 +1,52 @@
 img {
   max-width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  object-position: top;
   border-radius: 10px;
-  filter: drop-shadow(0 0 2px #101020);
+
+  transition: all 1s ease-in-out;
 }
+
 div {
-  padding: 10px;
+  padding: 15px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   transition: all 1s;
   border-radius: 5px;
+
+  h3 {
+    width: auto;
+    height: 2rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
 }
+
 div:hover {
   transform: scale(105%);
   transition: all .5s;
 }
+img:active {
+  aspect-ratio: auto;
+  transition: all 1s ease-in-out;
+}
+
 button {
   border: none;
   border-radius: 5px;
   text-transform: uppercase;
   padding: 3px;
   background-color: peachpuff;
-  box-shadow: 0 0 1px #101020;
+  box-shadow: 0 0 1px peachpuff;
   cursor: pointer;
 }
-button:disabled{
+
+button:hover {
+  box-shadow: 0 0 2px #101020;
+}
+
+button:disabled {
   background-color: lightgray;
 }
