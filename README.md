@@ -1,27 +1,29 @@
-# PlatziStore
+# Platzi Store
+En este repositorio se encuentra mi propia versión de la tienda de Platzi que he hecho durante los cursos de Angular con
+Nicolas Molina.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.2.
+## Estado
+He terminado el segundo curso de Angular (Componentes y servicios) con lo que he avanzado mucho en el proyecto. Por mi parte he agregado más estilos y estoy trabajando en ampliarlo para hacerlo más personal.
 
-## Development server
+## Servidor en desarrollo
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Este proyecto se creó con ayuda del Angular CLI, gracias a esta herramienta para correrlo de manera local basta con correr el comando.
+```
+ng serve
+```
+Esto correrá un servidor en el puerto 4200 (`http://localhost:4200/`).
 
-## Code scaffolding
+Si no cuentas con Angular CLI deberás instalarlo con 
+```
+npm i -g @angular/cli
+```
+## Otros comandos útiles
+Otros comando útiles que provee el Angular CLI son:
+- `ng build` para crear una build optimizada para producción.
+- `ng test` y `ng e2e` para correr los test. *Nota: No he agregado test aún.*
+- `ng lint` para evaluar tu código con el linter **eslint**.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## En que consiste el proyecto
+A lo largo de la escuela de JavaScript se ha ido desarrollando en conjunto este proyecto consistente en un e-commerce ficticio. El proyecto engloba la maquetación en HTML y CSS, la componetización usando diferentes frameworks y la construcción de una API REST que sirva los datos desde una base de datos relacional.
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Personalmente he escogido realizarlo utilizando Angular como framework de la mano de los cursos de Nicolas Molina.
