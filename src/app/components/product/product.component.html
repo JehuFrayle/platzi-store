@@ -1,6 +1,7 @@
 <div>
   <h3>{{product.title}}</h3>
-  <img [src]="product.image" [alt]="product.description"/>
+  <img *ngIf="product.images.length > 0" [src]="product.images[0]" [alt]="product.description"/>
   <p>{{product.price | currency:'USD'}}</p>
-  <button (click)="addToCart()" type="button" [disabled]="!(product.available ?? true)">Add to cart</button>
+  <button (click)="showDetails()">Details</button>
+  <button (click)="addToCart()" type="button">Add to cart</button>
 </div>

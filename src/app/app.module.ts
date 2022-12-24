@@ -8,17 +8,23 @@ import { ProductComponent } from './components/product/product.component';
 import { ProductsListComponent } from './components/products-list/products-list.component';
 import { NavHeaderComponent } from './components/nav-header/nav-header.component';
 
+//Swiper library for images gallery
+import { SwiperModule } from 'swiper/angular';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     ProductComponent,
     ProductsListComponent,
-    NavHeaderComponent
+    NavHeaderComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    SwiperModule
   ],
   providers: [],
   bootstrap: [AppComponent]

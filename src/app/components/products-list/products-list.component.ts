@@ -20,12 +20,41 @@ ngOnInit(): void {
   .subscribe(data => {
     this.products = data;
   });
+
+  this.storeService.myCart$
+  .subscribe( prods => {
+    this.total = prods.reduce((acc, prod) => acc + prod.price, 0);
+  })
+
 }
 products:Product[] = []
 myShoppingCart:Product[] = [];
 total = 0;
 cartHandler(product: Product){
   this.storeService.addToCart(product);
-  this.total = this.storeService.getTotal()
+}
+
+showProductDetail = false;
+productOnDetail:Product = {
+  id: 0,
+  title: 'Coffee',
+  description: 'A cup of coffee',
+  price: 356,
+  images: ["../../../assets/images/default.png"],
+  category: {
+    id: 0,
+    name: "",
+    typeImg: ""
+  }
+}
+toggleProductDetail() {
+  this.showProductDetail = !this.showProductDetail;
+}
+onShowDetail(id:number){
+  this.productsService.getOneProduct(id)
+  .subscribe(data => {
+    this.toggleProductDetail();
+    this.productOnDetail = data;
+  });
 }
 }
