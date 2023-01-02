@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
 import { StoreService } from 'src/app/services/store.service';
-import { Product } from '../../models/product.model';
+import { CreateProductDTO, Product} from '../../models/product.model';
 
 @Component({
   selector: 'app-products-list',
@@ -25,7 +25,6 @@ ngOnInit(): void {
   .subscribe( prods => {
     this.total = prods.reduce((acc, prod) => acc + prod.price, 0);
   })
-
 }
 products:Product[] = []
 myShoppingCart:Product[] = [];
@@ -51,10 +50,42 @@ toggleProductDetail() {
   this.showProductDetail = !this.showProductDetail;
 }
 onShowDetail(id:number){
+  if(this.showProductDetail){
+    this.toggleProductDetail();
+  }
   this.productsService.getOneProduct(id)
   .subscribe(data => {
     this.toggleProductDetail();
     this.productOnDetail = data;
   });
+}
+
+
+createProduct(){
+  const product:CreateProductDTO = {
+    title: 'Viejo producto',
+    description: 'This is not a description',
+    images: [],
+    price: 79,
+    categoryId: 2
+  }
+
+  this.productsService.createProduct(product)
+  .subscribe((data) => {
+    console.log('Creado el producto: ', data);
+    this.products.push(data);
+  })
+}
+productChanged(prod: Product){
+  const index = this.products.findIndex((item) => item.id === prod.id);
+  this.products[index] = prod;
+}
+productDeleted(prod: Product){
+  const index = this.products.findIndex((item) => item.id === prod.id);
+  this.products.splice(index, 1);
+  this.showProductDetail = false;
+
+  this.storeService.removeFromCart(prod.id);
+  this.myShoppingCart = this.storeService.getMyShoppingCart();
 }
 }

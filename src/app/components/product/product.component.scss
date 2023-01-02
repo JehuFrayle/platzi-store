@@ -8,7 +8,7 @@ img {
   transition: all 1s ease-in-out;
 }
 
-div {
+:host {
   padding: 15px;
   display: flex;
   flex-direction: column;
@@ -24,29 +24,63 @@ div {
   }
 }
 
-div:hover {
+:host:hover {
   transform: scale(105%);
   transition: all .5s;
 }
+
 img:active {
   aspect-ratio: auto;
   transition: all 1s ease-in-out;
 }
 
-button {
-  border: none;
-  border-radius: 5px;
-  text-transform: uppercase;
-  padding: 3px;
-  background-color: peachpuff;
-  box-shadow: 0 0 1px peachpuff;
-  cursor: pointer;
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    border: none;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    min-width: 15%;
+    max-width: 20%;
+    margin: 0 5px;
+    padding: 5%;
+    text-transform: uppercase;
+    background-color: #ACD9B2;
+    fill: white;
+    box-shadow: 0 0 1px peachpuff;
+    cursor: pointer;
+
+    transition: all .3s ease;
+
+    &:hover {
+      transition: all .3s ease;
+      box-shadow: 0 0 2px #ACD9B2;
+      background-color: white;
+      fill: #ACD9B2;
+    }
+
+    svg {
+      margin: 0 auto;
+    }
+  }
 }
 
-button:hover {
-  box-shadow: 0 0 2px #101020;
+// En Tablet
+@media screen and (min-width: 40em) {
+  .buttons {
+    button {
+      max-width: 25%;
+    }
+  }
 }
 
-button:disabled {
-  background-color: lightgray;
+// En PC
+@media screen and (min-width: 64em) {
+  .buttons {
+    button {
+      max-width: 20%;
+    }
+  }
 }

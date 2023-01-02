@@ -15,6 +15,10 @@ export class StoreService {
     this.myShoppingCart.push(product);
     this.myCart.next(this.myShoppingCart);
   }
+  removeFromCart(id: number){
+    this.myShoppingCart = this.myShoppingCart.filter((item) => item.id !== id);
+    this.myCart.next(this.myShoppingCart);
+  }
   getTotal() {
     return this.total = this.myShoppingCart.reduce((acc, item) => {return acc += item.price}, 0);
   }

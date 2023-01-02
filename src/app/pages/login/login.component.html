@@ -1,0 +1,13 @@
+<h1>Log in</h1>
+<form [formGroup]="formLogin" (submit)="login()">
+  <div class="form-group" [ngClass]="{'not-valid': formLogin.get('mail')?.touched && formLogin.get('mail')?.invalid}">
+    <input type="email" id="mail" formControlName="mail" placeholder=" ">
+    <label for="mail">Your e-mail</label>
+  </div>
+  <div class="form-group" [ngClass]="{'not-valid': formLogin.get('pass')?.dirty && formLogin.get('pass')?.invalid}">
+    <input type="password" id="pass" formControlName="pass" placeholder=" ">
+    <label for="pass">Your password</label>
+  </div>
+  <button type="submit" [disabled]="formLogin.invalid">Let's go</button>
+</form>
+<p>Don't you have an account yet? <a href="sign-up">Sign up</a></p>

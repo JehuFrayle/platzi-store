@@ -11,3 +11,8 @@ export interface Product {
   description: string,
   category: Category
 }
+export interface CreateProductDTO extends Omit<Product, 'id' | 'category'> {
+  categoryId: number
+}
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface UpdateProductDTO extends Partial<CreateProductDTO> { }
