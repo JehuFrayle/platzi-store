@@ -132,6 +132,25 @@
     .account {
       margin-right: .5em;
     }
+    .loginButton {
+      background-color: #ACD9B2;
+      color: #232830;
+      font-size: small;
+      text-decoration: none;
+      border: none;
+      border-radius: 5px;
+      padding: 10px;
+      margin: 0 1rem;
+      box-shadow: 0 0 2px rgba(10,30,10, .2);
+      transition: transform .3s ease;
+
+      &:hover {
+        cursor: pointer;
+        box-shadow: 0 0 2px rgb(122, 167, 128);
+        transform: scale(105%);
+        transition: transform .3s ease;
+      }
+    }
   }
 
   .cart {

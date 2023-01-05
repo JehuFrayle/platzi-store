@@ -1,1 +1,28 @@
-<p>register works!</p>
+<h1>Sign up</h1>
+<form [formGroup]="formRegister" (submit)="signup()">
+  <div class="form-group"
+    [ngClass]="{'not-valid': formRegister.get('user')?.touched && formRegister.get('user')?.invalid}">
+    <input type="text" id="user" formControlName="user" placeholder=" ">
+    <label for="user">Your username</label>
+  </div>
+  <div class="form-group"
+    [ngClass]="{'not-valid': formRegister.get('mail')?.touched && formRegister.get('mail')?.invalid}">
+    <input type="email" id="mail" formControlName="mail" placeholder=" ">
+    <label for="mail">Your e-mail</label>
+  </div>
+  <div class="form-group"
+    [ngClass]="{'not-valid': formRegister.get('pass')?.touched && formRegister.get('pass')?.invalid}">
+    <input type="password" id="pass" formControlName="pass" placeholder=" ">
+    <label for="pass">Your password</label>
+  </div>
+  <div class="form-group"
+    [ngClass]="{'not-valid': formRegister.get('cpass')?.touched && formRegister.get('cpass')?.invalid}">
+    <input type="password" id="cpass" formControlName="cpass" placeholder=" ">
+    <label for="cpass">Confirm password</label>
+  </div>
+  <p
+    *ngIf="formRegister.get('cpass')?.dirty && formRegister.get('cpass')?.value.length > 0 && checkPasswords(formRegister)">
+    Passwords don't match</p>
+  <button type="submit" [disabled]="formRegister.invalid">Let's go</button>
+</form>
+<p>Do you have an account already? <a href="login">Login</a></p>

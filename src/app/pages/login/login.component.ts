@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-login',
@@ -7,7 +9,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private authService:AuthService,
+    private tokenService: TokenService) { }
   public formLogin!: FormGroup;
 
   validMail = true;
@@ -19,6 +22,12 @@ export class LoginComponent implements OnInit {
     })
   }
   login() {
-    console.log('Enviar info');
+    const email = this.formLogin.get('mail')?.value;
+    const password = this.formLogin.get('pass')?.value;
+
+    this.authService.login(email, password)
+    .subscribe((res) => {
+      this.tokenService.saveToken(res.access_token);
+    })
   }
 }

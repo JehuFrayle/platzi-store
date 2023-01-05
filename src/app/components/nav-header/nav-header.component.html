@@ -41,7 +41,10 @@
       </ul>
     </nav>
     <div class="info">
-      <div class="account">jehu@frayle.com</div>
+      <div *ngIf="user; else loginButton" class="account">{{user.name}}</div>
+      <ng-template #loginButton>
+        <a href="login" class="loginButton">Login</a>
+      </ng-template>
       <div class="cart">
         <a href="">
           <img src="./assets/svg/icon_shopping_cart.svg" alt="logo">
