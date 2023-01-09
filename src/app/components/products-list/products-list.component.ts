@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
 import { StoreService } from 'src/app/services/store.service';
 import { CreateProductDTO, Product} from '../../models/product.model';
@@ -16,17 +16,12 @@ export class ProductsListComponent implements OnInit {
     this.myShoppingCart = this.storeService.getMyShoppingCart();
   }
 ngOnInit(): void {
-  this.productsService.getAllProducts()
-  .subscribe(data => {
-    this.products = data;
-  });
-
   this.storeService.myCart$
   .subscribe( prods => {
     this.total = prods.reduce((acc, prod) => acc + prod.price, 0);
   })
 }
-products:Product[] = []
+@Input() products:Product[] = []
 myShoppingCart:Product[] = [];
 total = 0;
 cartHandler(product: Product){

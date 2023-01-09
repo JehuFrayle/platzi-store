@@ -17,7 +17,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'category',
+    path: 'category/:id',
     component: CategoryComponent,
   }, {
     path: 'home',

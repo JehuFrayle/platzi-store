@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenService } from 'src/app/services/token.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import { TokenService } from 'src/app/services/token.service';
 })
 export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private authService:AuthService,
-    private tokenService: TokenService) { }
+  private tokenService: TokenService, private router:Router) { }
   public formLogin!: FormGroup;
 
   validMail = true;
@@ -28,6 +29,8 @@ export class LoginComponent implements OnInit {
     this.authService.login(email, password)
     .subscribe((res) => {
       this.tokenService.saveToken(res.access_token);
+      this.authService.updateProfile();
+      this.router.navigate([`/home`]);
     })
   }
 }
