@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { UpdateProductDTO, CreateProductDTO, Product } from '../models/product.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class ProductsService {
   constructor(
     private http: HttpClient
   ) { }
-  private BASE_API = 'https://young-sands-07814.herokuapp.com/api';
+  private BASE_API = `${environment.API_URL}/api`;
 
   getAllProducts(limit?: number, offset?: number) {
     let params = new HttpParams();
