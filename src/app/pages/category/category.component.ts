@@ -11,33 +11,45 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./category.component.scss']
 })
 export class CategoryComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private category:CategoriesService, private productsService:ProductsService) { }
+  constructor(private route: ActivatedRoute, private category: CategoriesService, private productsService: ProductsService) { }
 
   categoryID: string | null = null;
   categoryProducts: Product[] = [];
   categoryName = '';
   ngOnInit(): void {
-  this.route.paramMap.pipe(
-    switchMap(params => {
-      this.categoryID = params.get('id');
-      if(this.categoryID){
-        return this.category.getAll();
-      }
-      return []
-    }),
-    switchMap(params => {
-      const ind = params.findIndex((cat) => cat.id === Number(this.categoryID))
-      this.categoryName = params[ind].name;
+    this.route.paramMap.pipe(
+      switchMap(params => {
+        this.categoryID = params.get('id');
+        if (this.categoryID) {
+          return this.category.getAll();
+        }
+        return []
+      }),
+      switchMap(params => {
+        const ind = params.findIndex((cat) => cat.id === Number(this.categoryID))
+        this.categoryName = params[ind].name;
 
-      if(this.categoryID) {
-        return this.productsService.getByCategory(this.categoryID)
-      }
-      return [];
-    })
-  )
-  .subscribe((data) => {
-      this.categoryProducts = data;
-    });
+        if (this.categoryID) {
+          return this.productsService.getByCategory(this.categoryID, 10, 0)
+        }
+        return [];
+      })
+    )
+      .subscribe((data) => {
+        this.categoryProducts = data;
+      });
 
+  }
+  thatsAll = false;
+  getMore(offset: number) {
+    if (this.categoryID) {
+      this.productsService.getByCategory(this.categoryID, 10, offset)
+        .subscribe(chunk => {
+          this.categoryProducts = [...this.categoryProducts, ...chunk];
+          if(chunk.length === 0){
+            this.thatsAll = true;
+          }
+        })
+    }
   }
 }

@@ -1,6 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Product, UpdateProductDTO } from 'src/app/models/product.model';
-import { ProductsService } from 'src/app/services/products.service';
 import { StoreService } from 'src/app/services/store.service';
 
 @Component({
@@ -10,8 +9,7 @@ import { StoreService } from 'src/app/services/store.service';
 })
 export class ProductDetailComponent {
   constructor(
-    private storeService: StoreService,
-    private productsService: ProductsService) { }
+    private storeService: StoreService) { }
 
   @Input() product: Product = {
     id: 0,
@@ -28,28 +26,7 @@ export class ProductDetailComponent {
   addToCart() {
     this.storeService.addToCart(this.product);
   }
-
-  @Output() changingProduct = new EventEmitter<Product>();
-  @Output() deletingProduct = new EventEmitter<Product>();
-
-  changes:UpdateProductDTO = {
+  changes: UpdateProductDTO = {
     title: 'Tasty Wooden Mouse',
-  }
-  updateProduct(dto: UpdateProductDTO) {
-    const id = this.product.id;
-    this.productsService.updateProduct(id, dto)
-      .subscribe(data => {
-        this.product = data;
-        this.changingProduct.emit(data);
-        console.log('Actualizado', data);
-      })
-  }
-  deleteProduct(id:number){
-    this.productsService.deleteProduct(id)
-    .subscribe((wasDeleted:boolean) => {
-      if(wasDeleted){
-        this.deletingProduct.emit(this.product);
-      }
-    })
   }
 }

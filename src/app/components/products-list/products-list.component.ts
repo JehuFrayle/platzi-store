@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
 import { StoreService } from 'src/app/services/store.service';
-import { CreateProductDTO, Product} from '../../models/product.model';
+import { Product} from '../../models/product.model';
 
 @Component({
   selector: 'app-products-list',
@@ -22,6 +22,10 @@ ngOnInit(): void {
   })
 }
 @Input() products:Product[] = []
+@Input() thatsIt = false;
+
+offset = 0;
+@Output() more = new EventEmitter<number>();
 myShoppingCart:Product[] = [];
 total = 0;
 cartHandler(product: Product){
@@ -54,33 +58,8 @@ onShowDetail(id:number){
     this.productOnDetail = data;
   });
 }
-
-
-createProduct(){
-  const product:CreateProductDTO = {
-    title: 'Viejo producto',
-    description: 'This is not a description',
-    images: [],
-    price: 79,
-    categoryId: 2
-  }
-
-  this.productsService.createProduct(product)
-  .subscribe((data) => {
-    console.log('Creado el producto: ', data);
-    this.products.push(data);
-  })
-}
-productChanged(prod: Product){
-  const index = this.products.findIndex((item) => item.id === prod.id);
-  this.products[index] = prod;
-}
-productDeleted(prod: Product){
-  const index = this.products.findIndex((item) => item.id === prod.id);
-  this.products.splice(index, 1);
-  this.showProductDetail = false;
-
-  this.storeService.removeFromCart(prod.id);
-  this.myShoppingCart = this.storeService.getMyShoppingCart();
+loadMore(){
+  this.offset += 10;
+  this.more.emit(this.offset);
 }
 }

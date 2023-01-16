@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 import { CreateUserDTO } from 'src/app/models/user.model';
+import { AuthService } from 'src/app/services/auth.service';
+import { TokenService } from 'src/app/services/token.service';
 import { UsersService } from 'src/app/services/users.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +13,8 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  constructor(private formBuilder: FormBuilder, private usersService:UsersService) { }
+  constructor(private formBuilder: FormBuilder, private usersService:UsersService,
+    private authService:AuthService, private tokenService:TokenService, private router:Router) { }
   public formRegister!: FormGroup;
 
   validMail = true;
@@ -39,6 +43,12 @@ export class RegisterComponent implements OnInit {
     .subscribe((res) => {
       console.log('Registro exitoso');
       console.log(res);
+      this.authService.login(res.email, res.password)
+      .subscribe((auth) => {
+        this.tokenService.saveToken(auth.access_token);
+        this.authService.updateProfile();
+        this.router.navigate([`/home`]);
+      })
     })
   }
 }

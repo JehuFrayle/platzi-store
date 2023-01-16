@@ -21,10 +21,11 @@ export class NavHeaderComponent implements OnInit {
   counter = 0;
   user: User | null = null;
   categories: Category[] = [];
+
   ngOnInit() {
     this.storeService.myCart$.subscribe((products) => {
       this.counter = products.length;
-    })
+    });
     this.authService.updateProfile();
     this.authService.myProfile$.subscribe((user) => {
       if (user.name !== 'Guest') {

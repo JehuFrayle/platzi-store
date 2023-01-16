@@ -3,11 +3,16 @@
     <p>You have <span>{{myShoppingCart.length}}</span> articles in your cart</p>
     <p>Your total <span>{{total | currency:'USD'}}</span></p>
   </div>
-  <button (click)="createProduct()">Agregar producto</button>
   <div class="products-grid">
     <app-product *ngFor="let product of products" [product]="product" (addedProduct)="cartHandler($event)"
       (ShowProduct)="onShowDetail($event)"></app-product>
   </div>
+  <button *ngIf="!thatsIt" class="moreButton" (click)="loadMore()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+      <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
+    </svg>
+    Load more...
+  </button>
   <div class="product-detail" [class.active]="showProductDetail" (click)="toggleProductDetail">
     <button (click)="toggleProductDetail()">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -16,7 +21,6 @@
         </path>
       </svg>
     </button>
-    <app-product-detail [product]="productOnDetail" (changingProduct)="productChanged($event)"
-    (deletingProduct)="productDeleted($event)"></app-product-detail>
+    <app-product-detail [product]="productOnDetail"></app-product-detail>
   </div>
 </div>

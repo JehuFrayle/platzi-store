@@ -1,2 +1,2 @@
 <h2>{{categoryName}}</h2>
-<app-products-list [products]="categoryProducts"></app-products-list>
+<app-products-list [thatsIt]="thatsAll" [products]="categoryProducts" (more)="getMore($event)"></app-products-list>

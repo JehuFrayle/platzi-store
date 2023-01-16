@@ -1,2 +1,2 @@
 <h2>All available products</h2>
-<app-products-list [products]="products"></app-products-list>
+<app-products-list [thatsIt]="thatsAll" [products]="products" (more)="getMore($event)"></app-products-list>
