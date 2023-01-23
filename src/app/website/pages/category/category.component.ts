@@ -4,6 +4,7 @@ import { CategoriesService } from 'src/app/services/categories.service';
 import { ProductsService } from 'src/app/services/products.service';
 import { Product } from 'src/app/models/product.model';
 import { switchMap } from 'rxjs/operators';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-category',
@@ -11,7 +12,8 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./category.component.scss']
 })
 export class CategoryComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private category: CategoriesService, private productsService: ProductsService) { }
+  constructor(private route: ActivatedRoute, private category: CategoriesService, private productsService: ProductsService,
+    private titleService:Title) { }
 
   categoryID: string | null = null;
   categoryProducts: Product[] = [];
@@ -28,7 +30,8 @@ export class CategoryComponent implements OnInit {
       switchMap(params => {
         const ind = params.findIndex((cat) => cat.id === Number(this.categoryID))
         this.categoryName = params[ind].name;
-
+        this.titleService.setTitle(`Platzi Store | ${this.categoryName}`);
+        
         if (this.categoryID) {
           return this.productsService.getByCategory(this.categoryID, 10, 0)
         }
@@ -38,7 +41,6 @@ export class CategoryComponent implements OnInit {
       .subscribe((data) => {
         this.categoryProducts = data;
       });
-
   }
   thatsAll = false;
   getMore(offset: number) {

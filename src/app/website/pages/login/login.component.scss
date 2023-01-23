@@ -98,4 +98,12 @@ p {
     color: rgb(122, 167, 128); // this is the common green but lowering in 50 every color
     text-decoration:none;
   }
+
+  &.error {
+    background-color: rgba(255,0,0,50%);
+    color: azure;
+    border-radius: 5px;
+    padding: 1rem;
+    margin: 0;
+  }
 }

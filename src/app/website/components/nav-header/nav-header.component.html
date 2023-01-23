@@ -19,6 +19,18 @@
       </path>
     </svg>
   </button>
+  <div class="info">
+    <div *ngIf="user; else loginButton" class="account">Hola {{user.name}}</div>
+    <ng-template #loginButton>
+      <a routerLink="login" class="loginButton">Login</a>
+    </ng-template>
+    <div class="cart">
+      <a href="">
+        <img src="./assets/svg/icon_shopping_cart.svg" alt="logo">
+      </a>
+      <span class="counter">{{counter}}</span>
+    </div>
+  </div>
   <ul>
     <li><a (click)="toggleMenu()" routerLink="home">All</a></li>
     <li *ngFor="let cat of categories">

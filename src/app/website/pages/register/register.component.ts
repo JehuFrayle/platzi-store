@@ -26,6 +26,9 @@ export class RegisterComponent implements OnInit {
     return pass === confirmPass ? null : { notSame: true }
   }
   ngOnInit() {
+    if(this.tokenService.getToken()) {
+      this.router.navigate([`/home`]);
+    }
     this.formRegister = this.formBuilder.group({
       mail: ['', [Validators.required, Validators.email]],
       pass: ['', [Validators.required]],

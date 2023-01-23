@@ -16,7 +16,12 @@ export class LoginComponent implements OnInit {
 
   validMail = true;
   validPass = true;
+  loginStatus:string = 'init';
+
   ngOnInit() {
+    if(this.tokenService.getToken()){
+      this.router.navigate([`/home`]);
+    }
     this.formLogin = this.formBuilder.group({
       mail: ['', [Validators.required, Validators.email]],
       pass: ['', [Validators.required]]
@@ -31,6 +36,8 @@ export class LoginComponent implements OnInit {
       this.tokenService.saveToken(res.access_token);
       this.authService.updateProfile();
       this.router.navigate([`/home`]);
+    }, () => {
+      this.loginStatus = 'error';
     })
   }
 }
