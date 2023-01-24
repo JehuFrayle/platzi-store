@@ -46,10 +46,8 @@ export class RegisterComponent implements OnInit {
     .subscribe((res) => {
       console.log('Registro exitoso');
       console.log(res);
-      this.authService.login(res.email, res.password)
-      .subscribe((auth) => {
-        this.tokenService.saveToken(auth.access_token);
-        this.authService.updateProfile();
+      this.authService.loginAndProfile(res.email, res.password)
+      .subscribe(() => {
         this.router.navigate([`/home`]);
       })
     })

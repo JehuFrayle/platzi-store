@@ -9,6 +9,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { RecoveryComponent } from './pages/recovery/recovery.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { LayoutComponent } from './components/layout/layout.component';
+import { AuthGuard } from '../guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -23,7 +24,8 @@ const routes: Routes = [
       {
         path: 'category/:id',
         component: CategoryComponent,
-      }, {
+      },
+      {
         path: 'home',
         component: HomeComponent,
         title: "Platzi Store | Home",
@@ -31,24 +33,25 @@ const routes: Routes = [
       {
         path: 'my-cart',
         component: MycartComponent
-      }, 
+      },
       {
         path: 'login',
         component: LoginComponent,
         title: "Platzi Store | Login"
-      }, 
+      },
       {
         path: 'sign-up',
         component: RegisterComponent,
         title: "Platzi Store | Signup"
-      }, 
+      },
       {
         path: 'recovery',
         component: RecoveryComponent
-      }, 
+      },
       {
         path: 'profile',
-        component: ProfileComponent
+        component: ProfileComponent,
+        canActivate: [AuthGuard]
       }
     ]
   }

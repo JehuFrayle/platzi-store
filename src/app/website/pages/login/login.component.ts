@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
 
   validMail = true;
   validPass = true;
-  loginStatus:string = 'init';
+  loginStatus = 'init';
 
   ngOnInit() {
     if(this.tokenService.getToken()){
@@ -31,10 +31,8 @@ export class LoginComponent implements OnInit {
     const email = this.formLogin.get('mail')?.value;
     const password = this.formLogin.get('pass')?.value;
 
-    this.authService.login(email, password)
-    .subscribe((res) => {
-      this.tokenService.saveToken(res.access_token);
-      this.authService.updateProfile();
+    this.authService.loginAndProfile(email, password)
+    .subscribe(() => {
       this.router.navigate([`/home`]);
     }, () => {
       this.loginStatus = 'error';

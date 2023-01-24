@@ -26,12 +26,9 @@ export class NavHeaderComponent implements OnInit {
     this.storeService.myCart$.subscribe((products) => {
       this.counter = products.length;
     });
-    this.authService.updateProfile();
     this.authService.myProfile$.subscribe((user) => {
-      if (user.name !== 'Guest') {
         this.user = user;
-      }
-    })
+    });
     this.getCategories();
   }
 

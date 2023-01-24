@@ -3,7 +3,7 @@
     <button>
       <img src="./assets/svg/icon_menu.svg" alt="menu" (click)="toggleMenu()">
     </button>
-    <a href="">
+    <a routerLink="home">
       <img src="./assets/svg/logo_yard_sale.svg" alt="logo">
     </a>
     <a href="">
@@ -20,9 +20,9 @@
     </svg>
   </button>
   <div class="info">
-    <div *ngIf="user; else loginButton" class="account">Hola {{user.name}}</div>
+    <div *ngIf="user; else loginButton" class="account" (click)="toggleMenu()"><a routerLink="profile">Hola {{user.name}}</a></div>
     <ng-template #loginButton>
-      <a routerLink="login" class="loginButton">Login</a>
+      <a routerLink="login" class="loginButton" (click)="toggleMenu()">Login</a>
     </ng-template>
     <div class="cart">
       <a href="">
@@ -41,7 +41,7 @@
 <div class="hide-mobile">
   <div>
     <nav>
-      <a class="logo" href="">
+      <a class="logo" routerLink="home">
         <img src="./assets/svg/logo_yard_sale.svg" alt="logo">
       </a>
       <ul>
@@ -52,8 +52,8 @@
       </ul>
     </nav>
     <div class="info">
-      <div *ngIf="user; else loginButton" class="account">{{user.name}}</div>
-      <ng-template #loginButton>
+      <div *ngIf="user; else loginButtonDesktop" class="account"><a routerLink="profile">{{user.name}}</a></div>
+      <ng-template #loginButtonDesktop>
         <a routerLink="login" class="loginButton">Login</a>
       </ng-template>
       <div class="cart">
