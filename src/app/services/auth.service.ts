@@ -13,7 +13,7 @@ import { TokenService } from './token.service';
 export class AuthService {
 
   constructor(private httpClient: HttpClient, private tokenService: TokenService) { }
-  private BASE_API = `${environment.API_URL}/api/auth`;
+  private BASE_API = `${environment.API_URL}/auth`;
   private myProfile = new BehaviorSubject<User | null>(null);
   myProfile$ = this.myProfile.asObservable();
 

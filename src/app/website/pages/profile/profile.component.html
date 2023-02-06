@@ -1,3 +1,10 @@
-<p> {{user?.name}} </p>
-<p> {{user?.email}} </p>
-<button (click)="logout()">LogOut</button>
+<div class="cover"></div>
+<img [src]="user?.avatar ?? 'https://api.lorem.space/image/face?w=640&h=480&r=867'" [alt]="user?.name " width="80%">
+<div class="info">
+    <h1> {{user?.name}} </h1>
+    <p>{{user?.role}}</p>
+    <p> {{user?.email}} </p>
+</div>
+<div class="buttons">
+    <button (click)="logout()">Logout</button>
+</div>

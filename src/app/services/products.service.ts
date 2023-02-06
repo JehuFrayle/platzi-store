@@ -11,7 +11,7 @@ export class ProductsService {
   constructor(
     private http: HttpClient
   ) { }
-  private BASE_API = `${environment.API_URL}/api`;
+  private BASE_API = `${environment.API_URL}`;
 
   getAllProducts(limit?: number, offset?: number) {
     let params = new HttpParams();

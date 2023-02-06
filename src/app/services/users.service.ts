@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 export class UsersService {
 
   constructor(private httpClient: HttpClient) { }
-  private BASE_API = `${environment.API_URL}/api`;
+  private BASE_API = `${environment.API_URL}`;
   getAll() {
     return this.httpClient.get<User[]>(`${this.BASE_API}/users`);
   }
