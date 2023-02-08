@@ -1,5 +1,5 @@
 [build]
-  publish = "dist/angular-modules"
+  publish = "dist/platzi-store"
   command = "ng build"
 [[redirects]]
   from = "/*"
